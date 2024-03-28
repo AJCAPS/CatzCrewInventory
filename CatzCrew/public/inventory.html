@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+
+  <!-- Update the version number as needed -->
+  <script defer src="/__/firebase/10.9.0/firebase-app-compat.js"></script>
+  <script defer src="/__/firebase/10.9.0/firebase-app-compat.js"></script>
+  <script defer src="/__/firebase/10.9.0/firebase-database-compat.js"></script>
+  <script defer src="/__/firebase/10.9.0/firebase-firestore-compat.js"></script>
+  <script defer src="/__/firebase/10.9.0/firebase-firestore.js"></script>
+  <!-- Include only the Firebase features as you need -->
+  <!-- Add other Firebase SDK scripts here -->
+  <script defer src="/__/firebase/init.js?useEmulator=false"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<!-- Below is the actual features of the page from top to bottom, separated by divs.-->
+<body>
+    <!--Banner represents the actual page, if any division is created outside the banner, it will appear below the page-->
+    <div class="banner">
+        <div class="navbar">
+          <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="users.html">Users</a></li>
+            <li><a href="products.html">Products</a></li>
+          </ul>
+        </div>
+        <div class="mainbody">
+            <h1>Catz Crew Inventory Management</h1>
+            <!-- Add a table in your HTML where you want to display the data -->
+            <table id="ingredientsTable">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Data will go here -->
+                </tbody>
+              </table>
+              
+            <h2 id="name"></h2>
+            <p id="description"></p>
+            <input type="text" id="productName" placeholder="Enter product name">
+            <input type="text" id="productDescription" placeholder="Enter product description">
+            <input type="text" id="productQuantity" placeholder="Enter product quantity">
+            <button onclick="addProduct()">Add Product</button>
+        </div>
+
+    </div>
+
+  <script src="app.js"></script>  
+</body>
+</html>
