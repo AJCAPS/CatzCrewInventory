@@ -23,6 +23,7 @@
 <body>
   <div class="banner">
     <div class="navbar">
+      <img src="logo.png" class='logo'>
       <ul>
         <li><a href="index.html">Dashboard</a></li>
         <li><a href="inventory.html">Inventory</a></li>
@@ -30,7 +31,15 @@
         <li><a href="products.html">Products</a></li>
       </ul>
     </div>
-    <div id="myChart" style="max-width:700px; height:400px">
+    <div class="dashboard">
+      <div id="myChart" style="width:700px; height:400px;"></div>
+      <div class="tables">
+        <div id="stockCostTable" class="table"></div>
+        <div id="outOfStockTable" class="table"></div>
+      </div>
+    </div>
+    <div class="products">
+      <!-- This is where product transactions go for quick access -->
     </div>
   </div>
 

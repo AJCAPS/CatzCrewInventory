@@ -1,42 +1,44 @@
+let db;
 document.addEventListener("DOMContentLoaded", event => {
     const app = firebase.app();
-    const db = firebase.firestore();
-
+    db = firebase.firestore();
+    
     const ingredients = db.collection('ingredients');
 
     ingredients.get().then((querySnapshot) => {
-        const tableBody = document.getElementById('ingredientsTable').getElementsByTagName('tbody')[0];
+        const data = [['Product', 'Quantity']];
 
         querySnapshot.forEach((doc) => {
-            const productData = doc.data();
-
-            // Create a new row and cells
-            let row = document.createElement('tr');
-            let nameCell = document.createElement('td');
-            let quantityCell = document.createElement('td');
-
-            // Set the text of the cells
-            nameCell.textContent = productData.name;
-            quantityCell.textContent = productData.quantity;
-
-            // Add the cells to the row
-            row.appendChild(nameCell);
-            row.appendChild(quantityCell);
-
-            // Add the row to the table
-            tableBody.appendChild(row);
+            const productData = doc.data(); 
+            data.push([productData.name, productData.quantity]);
         });
+
+        google.charts.setOnLoadCallback(() => drawChart(data));
+        updateTables();
     });
 });
-
-
 function drawChart(data) {
-    const dataTable = google.visualization.arrayToDataTable(data);
-    const options = {
-        title: 'Product Quantities'
-    };
-    const chart = new google.visualization.BarChart(document.getElementById('myChart'));
-    chart.draw(dataTable, options);
+  const dataTable = google.visualization.arrayToDataTable(data);
+  const options = {
+      title: 'Product Quantities',
+      titleTextStyle: {
+          color: '#FFF'
+      },
+      colors: ['#BF5700'],
+      backgroundColor: '#333333',
+      hAxis: {
+          textStyle: {
+              color: '#FFF' 
+          }
+      },
+      vAxis: {
+          textStyle: {
+              color: '#FFF' 
+          }
+      }
+  };
+  const chart = new google.visualization.BarChart(document.getElementById('myChart'));
+  chart.draw(dataTable, options);
 }
 
 function addProduct() {
@@ -75,3 +77,54 @@ function addProduct() {
         console.error('Transaction failed: ', error);
     });
 }
+function updateTables() {
+    let currentStockCost = 0;
+    let outOfStockItems = [];
+    db.collection('ingredients').get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        const data = doc.data();
+        const cost = data.cost;
+        const quantity = data.quantity;
+        const lowstock = data.lowstock;
+  
+        // Calculate current stock cost
+        currentStockCost += cost * quantity;
+  
+        // Check for out of stock items
+        if (quantity <= lowstock) {
+          outOfStockItems.push(doc.data().name);
+        }
+      });
+          // Log the outOfStockItems array for debugging
+    console.log('Out of stock items:', outOfStockItems);
+  
+      // Update the 'current stock cost' table
+      document.getElementById('stockCostTable').innerHTML = `
+        <table>
+          <tr>
+            <th>Current Stock Cost</th>
+          </tr>
+          <tr>
+            <td>\$${currentStockCost.toFixed(2)}</td>
+          </tr>
+        </table>
+      `;
+  
+      // Update the 'out of stock' items table
+      const outOfStockTableHTML = outOfStockItems.map(item => `
+        <tr>
+          <td>${item}</td>
+        </tr>
+      `).join('');
+  
+      document.getElementById('outOfStockTable').innerHTML = `
+        <table>
+          <tr>
+            <th>Low Stock Items</th>
+          </tr>
+          ${outOfStockTableHTML}
+        </table>
+      `;
+    });
+  }
+

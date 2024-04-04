@@ -21,6 +21,7 @@
     <!--Banner represents the actual page, if any division is created outside the banner, it will appear below the page-->
     <div class="banner">
         <div class="navbar">
+        <img src="logo.png" class='logo'>
           <ul>
             <li><a href="index.html">Dashboard</a></li>
             <li><a href="inventory.html">Inventory</a></li>
@@ -28,31 +29,46 @@
             <li><a href="products.html">Products</a></li>
           </ul>
         </div>
-        <div class="mainbody">
-            <h1>Catz Crew Inventory Management</h1>
-            <!-- Add a table in your HTML where you want to display the data -->
-            <table id="ingredientsTable">
+        <div class="mainInventoryBody">
+            <h1>Inventory of Ingredients</h1>
+            <div class = "bottomInventoryInput">
+              <h2 id="name"></h2>
+              <p id="description"></p>
+              <input type="text" id="productName" placeholder="Enter ingredient name">
+              <input type="text" id="productDescription" placeholder="Enter ingredient description">
+              <input type="text" id="productQuantity" placeholder="Enter ingredient quantity">
+              <input type="text" id="productCost" placeholder="Enter the cost of the product per quantity">
+              <input type="text" id="productLowStock" placeholder="Enter the Low stock value of the product">
+              <input type="hidden" id="currentProduct">
+              <div>
+              <button onclick="saveProduct()">Save Changes</button>
+              <button onclick="addProduct()">Add Product</button>
+            </div>
+            <div class="inventoryContainer">
+              <table id="ingredientsTable">
                 <thead>
                   <tr>
-                    <th>Product</th>
+                    <th>Ingredient</th>
                     <th>Quantity</th>
+                    <th>Description</th>
+                    <th>Low Stock Value</th>
+                    <th>Stock Cost</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- Data will go here -->
+                  <!--Data here-->
                 </tbody>
               </table>
-              
-            <h2 id="name"></h2>
-            <p id="description"></p>
-            <input type="text" id="productName" placeholder="Enter product name">
-            <input type="text" id="productDescription" placeholder="Enter product description">
-            <input type="text" id="productQuantity" placeholder="Enter product quantity">
-            <button onclick="addProduct()">Add Product</button>
-        </div>
 
+              <div class="tables">
+                <div id="stockCostTable" class="table"></div>
+                <div id="outOfStockTable" class="table"></div>
+              </div>
+            </div>
+            </div> 
+        </div>
     </div>
 
-  <script src="app.js"></script>  
+  <script src="inventory.js"></script>  
 </body>
 </html>
