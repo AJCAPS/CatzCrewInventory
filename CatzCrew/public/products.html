@@ -25,33 +25,22 @@
           <ul>
             <li><a href="index.html">Dashboard</a></li>
             <li><a href="inventory.html">Inventory</a></li>
-            <li><a href="users.html">Users</a></li>
+            <li><a href="transactions.html">Transaction</a></li>
             <li><a href="products.html">Products</a></li>
+            <li><a href="login.html">Logout</a></li>
           </ul>
         </div>
-        <div class="mainInventoryBody">
-            <h1>Inventory of Ingredients</h1>
-            <div class = "bottomInventoryInput">
-                <h2 id="name"></h2>
-                <p id="description"></p>
-                <input type="text" id="productName" placeholder="Enter ingredient name">
-                <input type="text" id="productDescription" placeholder="Enter ingredient description">
-                <input type="text" id="productQuantity" placeholder="Enter ingredient quantity">
-                <input type="text" id="productCost" placeholder="Enter the cost of the product per quantity">
-                <input type="text" id="productLowStock" placeholder="Enter the Low stock value of the product">
-                <input type="hidden" id="currentProduct">
-    
-                <button onclick="saveProduct()">Save Changes</button>
-                <button onclick="addProduct()">Add Product</button>
-            <div class="inventoryContainer">
-              <table id="ingredientsTable">
+        <div class="mainProductsBody">
+          <h1>Product Management</h1>
+          <div class="productLayout" style="display: flex; justify-content: space-between;">
+            <div class="productContainer">
+              <table id="productTable">
                 <thead>
                   <tr>
-                    <th>Ingredient</th>
-                    <th>Quantity</th>
+                    <th>Product Name</th>
+                    <th>Ingredients</th>
                     <th>Description</th>
-                    <th>Low Stock Value</th>
-                    <th>Stock Cost</th>
+                    <th>Price</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -59,9 +48,53 @@
                 </tbody>
               </table>
             </div>
-            </div>
-        </div>
+            <div class="SideProductColumns">
+              <div>
+                <h2>Product Information</h2>
+                <input type="text" id="productPageName" placeholder="Enter ingredient name">
+                <input type="text" id="productPageDescription" placeholder="Enter ingredient description">
+                <input type="text" id="productPagePrice" placeholder="Enter the cost of the product per quantity">
+                <input type="hidden" id="currentProduct">
+                <h2>Ingredient Information</h2>
+              </div>
+            
+              <!-- Second Column -->
+              <div>
+                <table id="ingredientProductTable">
+                  <tr>
+                  </tr>
 
+                </table>
+                
+                <!-- Add your ingredients input here -->
+                <button id="addProductButton" onclick="addProduct()">Add Product</button>
+                <button id="saveChangeButton" onclick="saveProduct()">Save Changes</button>
+                <button id="removeProductButton" onclick="removeProduct()">Remove Product</button>
+                <button id="addRowButton" onclick="addRow()">Add Row</button>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="transactionDetails">
+          <h1>Transactions</h1>
+          <div class="transactionContainer">
+            <table id="transactionTable">
+              <thead>
+                <tr>
+                  <th>Transaction ID</th>
+                  <th>Transaction Date</th>
+                  <th>Total Gain</th>
+                  <th>Ordered Items</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!--Data here-->
+              </tbody>
+            </table>
+          </div>
+        </div>
     </div>
 
   <script src="products.js"></script>  

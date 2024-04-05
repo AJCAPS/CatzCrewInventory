@@ -25,24 +25,25 @@
           <ul>
             <li><a href="index.html">Dashboard</a></li>
             <li><a href="inventory.html">Inventory</a></li>
-            <li><a href="users.html">Users</a></li>
+            <li><a href="transactions.html">Transaction</a></li>
             <li><a href="products.html">Products</a></li>
+            <li><a href="login.html">Logout</a></li>
           </ul>
         </div>
         <div class="mainInventoryBody">
             <h1>Inventory of Ingredients</h1>
             <div class = "bottomInventoryInput">
-              <h2 id="name"></h2>
-              <p id="description"></p>
               <input type="text" id="productName" placeholder="Enter ingredient name">
               <input type="text" id="productDescription" placeholder="Enter ingredient description">
               <input type="text" id="productQuantity" placeholder="Enter ingredient quantity">
+              <input type="text" id="productQuantityType" placeholder="Enter quantity type">
               <input type="text" id="productCost" placeholder="Enter the cost of the product per quantity">
               <input type="text" id="productLowStock" placeholder="Enter the Low stock value of the product">
               <input type="hidden" id="currentProduct">
               <div>
-              <button onclick="saveProduct()">Save Changes</button>
-              <button onclick="addProduct()">Add Product</button>
+              <button id='saveProductButton' onclick="saveProduct()">Save Changes</button>
+              <button id='addProductButton' onclick="addProduct()">Add Ingredient</button>
+              <button id='removeProductButton' onclick="removeIngredient()">Remove Ingredient</button>
             </div>
             <div class="inventoryContainer">
               <table id="ingredientsTable">
@@ -50,6 +51,7 @@
                   <tr>
                     <th>Ingredient</th>
                     <th>Quantity</th>
+                    <th>Type</th>
                     <th>Description</th>
                     <th>Low Stock Value</th>
                     <th>Stock Cost</th>

@@ -53,6 +53,10 @@
     width: 100%;
 }
 
+.dashboardTitle{
+  color: #fff;
+  margin-left: 100px;
+}
 /* styles.css */
 .dashboard {
     display: flex;
@@ -71,7 +75,8 @@
   }
   
 #stockCostTable, #outOfStockTable {
-  background-color: rgba(255, 255, 255, 0.8); /* Change this to any color you like */
+  background-color: #333333; /* Change this to any color you like */
+  margin-right: 20px;
 
 }
 
@@ -90,11 +95,11 @@
 }
 
 #stockCostTable tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #fff;
 }
 
 #outOfStockTable tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #fff;
 }
   
   #myChart {
@@ -105,9 +110,9 @@
   /*--------------------*/ 
   /* For inventory.html */
   /*--------------------*/
-  #ingredientsTable {
-    background-color: rgba(255, 255, 255, 0.8); /* Change this to any color you like */
-  }
+#ingredientsTable {
+  background-color: rgba(255, 255, 255, 0.8); /* Change this to any color you like */
+}
 
 #ingredientsTable td {
   padding: 8px;
@@ -126,11 +131,11 @@
 
   
 
-  .mainInventoryBody{
+  .mainInventoryBody, .mainProductsBody{
     margin-left: 100px;
   }
 
-  .mainInventoryBody h1{
+  .mainInventoryBody h1, .mainProductsBody h1, .mainProductsBody h2, .transactionDetails h1{
     color:#fff;
   }
 
@@ -142,26 +147,96 @@
     flex: 0 0 auto;  /* Set width to fit content, don't grow */
     margin-left: 10px;  /* Add some margin for spacing */
   }
-  #productName {
-    width: 150px;
+  #productName, #productDescription, #productQuantity, #productCost, #productLowStock, #productQuantityType {
+    width: 200px;
     height: 40px;
   }
-  #productDescription {
-    width: 150px;
-    height: 40px;
+
+  #saveProductButton,#addProductButton{
+    width: 200px;
   }
-  #productQuantity {
-    width: 150px;
-    height: 40px;
+
+  /*--------------------*/ 
+  /* For products.html */
+  /*--------------------*/
+#productTable {
+    background-color: rgba(255, 255, 255, 0.8); /* Change this to any color you like */
   }
-  #productCost {
-    width: 150px;
-    height: 40px;
-  }
-  #productLowStock {
-    width: 150px;
-    height: 40px;
-  }
-  
+
+#productTable td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  size: 200px;
+}
+#productTable th {
+  padding: 8px;
+  border: 1px solid #ddd;
+  background-color: #f2f2f2;
+  text-align: left;
+}
+#productTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.productContainer {
+  flex: 55%;
+}
+
+.SideProductColumns {
+  flex: 45%;
+}
+
+.transactionDetails{
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+#transactionTable {
+  background-color: rgba(255, 255, 255, 0.8); /* Change this to any color you like */
+}
+
+#transactionTable td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  size: 200px;
+}
+#transactionTable th {
+  padding: 8px;
+  border: 1px solid #ddd;
+  background-color: #f2f2f2;
+  text-align: left;
+}
+#transactionTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.transactionDashboardTable{
+  margin-left: 100px;
+  margin-top: 10px;
+}
         
-  
+.loginInputs{
+  margin: auto;
+  width: 12%;
+  border: 3px #333333;
+  background-color: rgba(0,0,0,0.45);
+  padding: 10px;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+}
+.loginInputs label{
+  color: #fff;
+}
+.centerLogo{
+  margin: auto;
+  scale: 120%;
+  padding: 10px;
+  display: flex;
+  position: absolute;
+  top: 20%;
+  left: 51%;
+  transform: translate(-50%,-50%);
+}

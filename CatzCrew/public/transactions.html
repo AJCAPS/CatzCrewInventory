@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+
+  <!-- Update the version number as needed -->
+  <script defer src="/__/firebase/10.9.0/firebase-app-compat.js"></script>
+  <script defer src="/__/firebase/10.9.0/firebase-app-compat.js"></script>
+  <script defer src="/__/firebase/10.9.0/firebase-database-compat.js"></script>
+  <script defer src="/__/firebase/10.9.0/firebase-firestore-compat.js"></script>
+  <script defer src="/__/firebase/10.9.0/firebase-firestore.js"></script>
+  <!-- Include only the Firebase features as you need -->
+  <!-- Add other Firebase SDK scripts here -->
+  <script defer src="/__/firebase/init.js?useEmulator=false"></script>
+  <link rel="stylesheet" href="transactionstyles.css">
+</head>
+<body>
+  <!-- Your HTML content here -->
+  <div class="banner">
+    <div class="navbar">
+    <img src="logo.png" class='logo'>
+      <ul>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="inventory.html">Inventory</a></li>
+        <li><a href="transactions.html">Transaction</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </div>
+    <div class="mainTransactionsBody">
+    <div class="transactionTable-container">
+      <div class="transactionTableTitle">
+        <h1>Transactions</h1>
+        
+      </div>
+      <table id="transactionTable">
+        <thead>
+          <tr>
+            <th>Transaction ID</th>
+            <th>Transaction Date</th>
+            <th>Ordered Items</th>
+            <th>Transaction Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+      </table>
+    </div>
+    <div class="transactionDetails-container">
+      <div class="transactionDetailsTitle">
+        <h1>Transaction Details</h1>
+        <div class="transactionDetails">
+        <h4>Transaction ID</h4>
+        <input type='text' class="transactionID" id="transactionID" placeholder="Click on an item in the table to select">
+        <h4>Transaction Date</h4>
+        <input type="date" class="transactionDate" id="transactionDate">
+        <h4>Ordered Items</h4>
+        <div id="orderedItemsTable-container">
+
+          <input type="hidden" id="currentProduct">
+          <table id="orderedItemsTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="orderedItemsTableBody">
+                <!-- Data rows will go here -->
+            </tbody>
+        </table>
+        
+        </div>
+        <button id="addRowButton" onclick="addRow()">Add Item</button>
+        
+        <h4>Transaction Payment</h4>
+        <input type="number" class="transactionPayment" id="transactionPayment">
+
+        <div class="transactionDetailsButtons">
+          <button id="addTransactionButton" onclick="addTransaction()">Add Transaction</button>
+          <button id="saveTransactionButton" onclick="saveTransaction()">Save Changes</button>
+          <button id="deleteTransactionButton" onclick="deleteTransaction()">Delete Transaction</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script src="transactions.js"></script>
+</body>
+</html>

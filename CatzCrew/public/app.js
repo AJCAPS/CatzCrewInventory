@@ -35,7 +35,12 @@ function drawChart(data) {
           textStyle: {
               color: '#FFF' 
           }
-      }
+      },
+      legend: {
+        textStyle: {
+            color: '#FFF'
+        }
+    }
   };
   const chart = new google.visualization.BarChart(document.getElementById('myChart'));
   chart.draw(dataTable, options);
@@ -105,7 +110,7 @@ function updateTables() {
             <th>Current Stock Cost</th>
           </tr>
           <tr>
-            <td>\$${currentStockCost.toFixed(2)}</td>
+            <td>₱${currentStockCost.toFixed(2)}</td>
           </tr>
         </table>
       `;

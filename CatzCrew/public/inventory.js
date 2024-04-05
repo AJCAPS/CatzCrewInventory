@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", event => {
             let row = document.createElement('tr');
             let nameCell = document.createElement('td');
             let quantityCell = document.createElement('td');
+            let quantityTypeCell = document.createElement('td');
             let descriptionCell = document.createElement('td');
             let lowStockCell = document.createElement('td');
             let costCell = document.createElement('td')
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", event => {
             // Set the text of the cells
             nameCell.textContent = productData.name;
             quantityCell.textContent = productData.quantity;
+            quantityTypeCell.textContent = productData.quantitytype;
             descriptionCell.textContent = productData.description;
             lowStockCell.textContent = productData.lowstock;
             costCell.textContent = productData.cost
@@ -29,6 +31,7 @@ document.addEventListener("DOMContentLoaded", event => {
             // Add the cells to the row
             row.appendChild(nameCell);
             row.appendChild(quantityCell);
+            row.appendChild(quantityTypeCell);
             row.appendChild(descriptionCell);
             row.appendChild(lowStockCell);
             row.appendChild(costCell);
@@ -49,6 +52,7 @@ function displayDetails(id) {
             document.getElementById('productName').value = productData.name;
             document.getElementById('productDescription').value = productData.description;
             document.getElementById('productQuantity').value = productData.quantity;
+            document.getElementById('productQuantityType').value = productData.quantitytype;
             document.getElementById('productCost').value = productData.cost;
             document.getElementById('productLowStock').value = productData.lowstock;
 
@@ -67,6 +71,7 @@ function addProduct() {
     const ingredientName = document.getElementById('productName').value;
     const ingredientDescription = document.getElementById('productDescription').value;
     const ingredientQuantity = Number(document.getElementById('productQuantity').value);
+    const ingredientQuantityType = document.getElementById('productQuantityType').value;
     const ingredientCost = Number(document.getElementById('productCost').value);
     const ingredientLowStock = Number(document.getElementById('productLowStock').value);
 
@@ -92,6 +97,7 @@ function addProduct() {
                 name: ingredientName,
                 description: ingredientDescription,
                 quantity: ingredientQuantity,
+                quantitytype: ingredientQuantityType,
                 cost: ingredientCost,
                 lowstock: ingredientLowStock
             });
@@ -110,6 +116,9 @@ function saveProduct() {
 
     // Convert the quantity to a number
     const ingredientQuantity = Number(document.getElementById('productQuantity').value);
+    const ingredientQuantityType = document.getElementById('productQuantityType').value;
+    const ingredientCost = Number(document.getElementById('productCost').value);
+    const ingredientLowStock = Number(document.getElementById('productLowStock').value);
 
     // Get the id of the currently displayed product
     const currentProduct = document.getElementById('currentProduct').value;
@@ -118,7 +127,10 @@ function saveProduct() {
     db.collection('ingredients').doc(currentProduct).set({
         name: ingredientName,
         description: ingredientDescription,
-        quantity: ingredientQuantity
+        quantity: ingredientQuantity,
+        quantitytype: ingredientQuantityType,
+        cost: ingredientCost,
+        lowstock: ingredientLowStock
     }).then(() => {
         console.log("Document successfully updated!");
     }).catch((error) => {
@@ -178,7 +190,7 @@ function updateIngredientQuantities(orderId) {
             <th>Current Stock Cost</th>
           </tr>
           <tr>
-            <td>\$${currentStockCost.toFixed(2)}</td>
+            <td>₱${currentStockCost.toFixed(2)}</td>
           </tr>
         </table>
       `;
@@ -200,3 +212,14 @@ function updateIngredientQuantities(orderId) {
       `;
     });
   }
+  function removeIngredient() {
+    // Get the id of the ingredient to remove
+    const ingredientId = document.getElementById('currentProduct').value;
+
+    // Delete the ingredient document from Firestore
+    db.collection('ingredients').doc(ingredientId).delete().then(() => {
+        console.log("Document successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
+}
